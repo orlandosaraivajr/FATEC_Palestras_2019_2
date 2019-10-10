@@ -7,6 +7,7 @@ import org.springframework.stereotype.Service;
 
 import com.fatecararas.palestras.domain.Categoria;
 import com.fatecararas.palestras.repositories.CategoriaRepository;
+import com.fatecararas.palestras.services.exceptions.ObjectNotFoundException;
 
 @Service
 public class CategoriaService {
@@ -15,6 +16,9 @@ public class CategoriaService {
 	
 	public Categoria buscar(Integer id) {
 		Optional<Categoria> obj = this.repo.findById(id);
-		return obj.orElse(null);
+		return obj.orElseThrow(()-> new ObjectNotFoundException("Objeto não encontrado ! Id: " + id + ", Tipo: " + Categoria.class.getName()));
+		
+		// Optional<Categoria> obj = this.repo.findById(id);
+		// return obj.orElse(null);
 	}
 }
