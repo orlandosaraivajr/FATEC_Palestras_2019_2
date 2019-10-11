@@ -8,8 +8,11 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 import com.fatecararas.palestras.domain.Categoria;
+import com.fatecararas.palestras.domain.Cliente;
 import com.fatecararas.palestras.domain.Palestra;
+import com.fatecararas.palestras.domain.enums.TipoAluno;
 import com.fatecararas.palestras.repositories.CategoriaRepository;
+import com.fatecararas.palestras.repositories.ClienteRepository;
 import com.fatecararas.palestras.repositories.PalestraRepository;
 
 @SpringBootApplication
@@ -18,6 +21,8 @@ public class PalestrasApplication implements CommandLineRunner{
 	private CategoriaRepository categoriarepository;
 	@Autowired
 	private PalestraRepository palestrarepository;
+	@Autowired
+	private ClienteRepository clienterepository;
 	
 	public static void main(String[] args) {
 		SpringApplication.run(PalestrasApplication.class, args);
@@ -42,6 +47,9 @@ public class PalestrasApplication implements CommandLineRunner{
 		
 		categoriarepository.saveAll(Arrays.asList(cat1, cat2));
 		palestrarepository.saveAll(Arrays.asList(p1, p2, p3));
+		
+		Cliente cli1  = new Cliente(null, "Orlando", "orlandosaraivajr@gmail.com", "12345678910", TipoAluno.ALUNOEXTERNO);
+		clienterepository.saveAll(Arrays.asList(cli1));
 	}
 
 }
