@@ -1,11 +1,14 @@
 package com.fatecararas.palestras.domain;
 
 import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.List;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 
 import com.fatecararas.palestras.domain.enums.TipoAluno;
 
@@ -20,6 +23,10 @@ public class Cliente implements Serializable{
 	private String cpf;
 	private Integer fatecano;
 	
+	@OneToMany(mappedBy = "cliente")
+	private List<Pedido> pedidos = new ArrayList<>();
+	
+
 	public Cliente() {
 	}
 
@@ -72,6 +79,14 @@ public class Cliente implements Serializable{
 		this.fatecano = fatecano.getCod();
 	}
 
+	public List<Pedido> getPedidos() {
+		return pedidos;
+	}
+
+	public void setPedidos(List<Pedido> pedidos) {
+		this.pedidos = pedidos;
+	}
+	
 	@Override
 	public int hashCode() {
 		final int prime = 31;
