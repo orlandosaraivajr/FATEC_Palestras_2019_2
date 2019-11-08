@@ -10,6 +10,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fatecararas.palestras.domain.enums.TipoAluno;
 
 @Entity
@@ -23,6 +24,7 @@ public class Cliente implements Serializable{
 	private String cpf;
 	private Integer fatecano;
 	
+	@JsonIgnore
 	@OneToMany(mappedBy = "cliente")
 	private List<Pedido> pedidos = new ArrayList<>();
 	
